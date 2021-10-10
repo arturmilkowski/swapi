@@ -15,21 +15,22 @@ class PersonResource extends JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
         // return parent::toArray($request);
+        $planet = $this->whenLoaded('planet');
         return [
             'id' => $this->id,
             // 'planet_id' => $this->planet_id,
-            'planet' => new PlanetResource($this->planet),
+            'planet' => new PlanetResource($planet),
             'name' => $this->name,
             'height' => $this->height,
             'mass' => $this->mass,
             'hair_color' => $this->hair_color,
             'gender' => $this->gender,
-            'homeworld' => $this->homeworld,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            // 'homeworld' => $this->homeworld,
+            // 'created_at' => $this->created_at,
+            // 'updated_at' => $this->updated_at,
         ];
     }
 }

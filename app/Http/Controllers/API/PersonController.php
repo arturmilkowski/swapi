@@ -19,10 +19,11 @@ class PersonController extends Controller
      *
      * @return PersonResource
      */
-    public function index(): AnonymousResourceCollection // PersonResource
+    public function index(): AnonymousResourceCollection
     {
+        $persons = Person::with('planet')->get();
         // return new PersonResource(Person::all());
-        return PersonResource::collection(Person::all());
+        return PersonResource::collection($persons);
     }
 
     /**

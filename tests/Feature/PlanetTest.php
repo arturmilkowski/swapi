@@ -42,6 +42,11 @@ class PlanetTest extends TestCase
         );
     }
     
+    /**
+     * A planet has many poeple test.
+     *
+     * @return void
+     */
     public function testPlanetHasManyPeople(): void
     {
         $planet = Planet::factory()

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Resources\PlanetResource;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use App\Models\Planet;
 
 class PlanetController extends Controller
@@ -16,10 +17,11 @@ class PlanetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()//: PlanetResource
+    public function index(): AnonymousResourceCollection
     {
         // return new PlanetResource(Planet::all());
-        return PlanetResource::collection(Planet::all());
+        $planets = Planet::with('people.planet')->get();
+        return PlanetResource::collection($planets);
     }
 
     /**

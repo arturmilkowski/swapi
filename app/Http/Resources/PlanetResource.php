@@ -15,14 +15,13 @@ class PlanetResource extends JsonResource
      */
     public function toArray($request)
     {
-        // return parent::toArray($request);
         return [
             'id' => $this->id,
-            // 'people' => PersonResource::collection($this->people),
+            'people' => PersonResource::collection($this->whenLoaded('people')),
             'name' => $this->name,
             'terrain' => $this->terrain,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            // 'created_at' => $this->created_at,
+            // 'updated_at' => $this->updated_at,
         ];
     }
 }
